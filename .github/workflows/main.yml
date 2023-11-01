@@ -1,0 +1,33 @@
+name: Run Databricks Notebook
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_notebook:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+
+    - name: Install Databricks CLI
+      run: |
+        pip install databricks-cli
+        databricks --version
+      env:
+        DATABRICKS_HOST: https://adb-7743464365010388.8.azuredatabricks.net  # Replace with your Databricks workspace URL
+
+    - name: Run Databricks Notebook
+      run: |
+        databricks workspace export --workspace-path "/path/Repos/meenu.jain@nagarro.com/data-chisel/test_scripts" --format SOURCE . /tmp/pytest_script.py
+        python /tmp/pytest_script.py
+      env:
+        DATABRICKS_FOLDER: "/path/Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/pytest_script"  # Replace with your folder 
