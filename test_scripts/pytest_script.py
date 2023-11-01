@@ -1,0 +1,12 @@
+# Databricks notebook source
+start_year = 2023
+end_year = 2026
+
+year_months = []
+
+for year in range(start_year, end_year + 1):
+    for month in range(1, 13):
+        year_month = year * 100 + month
+        year_months.append(year_month)
+
+print(year_months)
