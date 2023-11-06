@@ -7,7 +7,7 @@ name: 'CD for my pipeline :)'
 jobs:
   deploy_code:
     name: Deploy my Great Databricks Pipeline to production
-    uses: .github/workflows/reusable_databricks_code_deployment.yml@v1.0.0
+    uses: ./reusable_databricks_code_deployment.yml@v1.0.0
     with:
       databricks_code_path: data-chisel/test_scripts/
       service_code_file: pytest_scripts.py
