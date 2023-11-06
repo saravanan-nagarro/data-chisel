@@ -13,5 +13,5 @@ jobs:
           export DATABRICKS_TOKEN=${{ secrets.DATABRICKS_TOKEN }}
 
           curl -s -n -X PATCH 
-          "https://{$MY_DATABRICKS_HOST}.com/api/2.0/repos/1185643686988104" -H
+          "https://{$MY_DATABRICKS_HOST}.net/api/2.0/repos/1185643686988104" -H
           "Authorization: Bearer $DATABRICKS_TOKEN" -d '{"branch": "master"}'
