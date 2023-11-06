@@ -10,3 +10,7 @@ for year in range(start_year, end_year + 1):
         year_months.append(year_month)
 
 print(year_months)
+
+# COMMAND ----------
+
+import pandas
