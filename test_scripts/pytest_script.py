@@ -13,4 +13,4 @@ print(year_months)
 
 # COMMAND ----------
 
-print(year_months)
+
