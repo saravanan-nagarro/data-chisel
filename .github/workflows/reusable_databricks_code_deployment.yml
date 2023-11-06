@@ -1,4 +1,5 @@
 name: Notebook Deployment - Databricks
+
 on:
   workflow_call:
     inputs:
@@ -11,14 +12,6 @@ on:
         description: python code file path
         type: string
         required: true
-    
-  secrets:
-    DATABRICKS_HOST_URL:
-      description:   'Dbx Host'
-      required: true
-    DATABRICKS_TOKEN:
-      description: 'dbx token'
-      required: true
 
 jobs:
   push_to_db:
@@ -43,6 +36,6 @@ jobs:
             jobs-api-version = 2.1 
             EOF 
     
-      - name: Deploy code to databricks workspace
+      - name: Deploy code to Databricks workspace
         run: |
             databricks workspace import ${{ inputs.service_code_file }} ${{ inputs.databricks_code_path }} --language python --overwrite
