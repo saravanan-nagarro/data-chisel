@@ -19,4 +19,4 @@ import pandas
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC
+# MAGIC select current_database()
