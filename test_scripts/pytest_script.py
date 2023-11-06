@@ -9,8 +9,4 @@ for year in range(start_year, end_year + 1):
         year_month = year * 100 + month
         year_months.append(year_month)
 
-print(year_months)
-
-# COMMAND ----------
-
 import pandas
