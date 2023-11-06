@@ -10,3 +10,8 @@ for year in range(start_year, end_year + 1):
         year_months.append(year_month)
 
 import pandas
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC select current_database()
