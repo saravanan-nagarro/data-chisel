@@ -1,6 +1,6 @@
 # Databricks notebook source
 start_year = 2023
-end_year = 2026
+end_year = 2028
 
 year_months = []
 
