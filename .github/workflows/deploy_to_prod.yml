@@ -15,8 +15,9 @@ jobs:
       - name: Databricks CLI config
         run: |
           # Install the Databricks CLI if needed
+          pip install --upgrade urllib3
           pip install databricks-cli
-
+         
           # Configure the Databricks CLI with your Databricks authentication token
           cat > ~/.databrickscfg << EOF
           [DEFAULT]
