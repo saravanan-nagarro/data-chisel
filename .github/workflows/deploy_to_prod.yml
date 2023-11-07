@@ -1,0 +1,24 @@
+name: Deploy to Prod
+on:
+  push:
+    branches:
+      - qa
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Databricks CLI
+        uses: databrickslabs/setup-databricks-cli@v2
+        with:
+          token: ${{ secrets.DATABRICKS_TOKEN }}
+
+      - name: Push Changes to Prod Workspace
+        run: |
+          # Replace with your Databricks commands to push code and run notebooks in the Prod workspace
+          databricks workspace import_dir /Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/ /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/
+          databricks workspace run-now --notebook /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/pytest_script
