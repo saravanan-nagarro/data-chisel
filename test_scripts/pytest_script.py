@@ -2,6 +2,7 @@
 start_year = 2023
 end_year = 2027
 
+
 year_months = []
 
 for year in range(start_year, end_year + 1):
