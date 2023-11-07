@@ -1,0 +1,35 @@
+name: Deploy to Prod
+on:
+  push:
+    branches:
+      - qa
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Upgrade urllib3
+        run: pip install --upgrade urllib3
+
+      - name: Databricks CLI config
+        run: |
+          # Install or upgrade the Databricks CLI
+          pip install --upgrade databricks-cli
+
+          # Configure the Databricks CLI with your Databricks authentication token
+          cat > ~/.databrickscfg << EOF
+          [DEFAULT]
+          host = ${{ secrets.DATABRICKS_HOST_URL }}
+          token = ${{ secrets.DATABRICKS_TOKEN }}
+          jobs-api-version = 2.1
+          EOF
+
+      - name: Push Changes to Prod Workspace
+        run: |
+          databricks workspace import /Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/pytest_script.py /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/pytest_script.py --overwrite --format SOURCE --language PYTHON || echo "Error importing Python script"
+          
+          #databricks workspace run-now --notebook /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/pytest_script.py

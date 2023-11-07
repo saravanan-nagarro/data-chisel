@@ -1,6 +1,7 @@
 # Databricks notebook source
 start_year = 2023
-end_year = 2028
+end_year = 2027
+
 
 year_months = []
 
@@ -18,5 +19,4 @@ import pandas
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC select current_database()
+
