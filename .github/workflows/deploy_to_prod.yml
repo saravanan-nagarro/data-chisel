@@ -13,11 +13,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Databricks CLI
-        uses: databrickslabs/setup-databricks-cli@v2
-        with:
-          token: ${{ secrets.DATABRICKS_TOKEN }}
-
-      - name: Install Databricks CLI
         uses: microsoft/install-databricks-cli@v1.0.0
 
       - name: Push Changes to Prod Workspace
