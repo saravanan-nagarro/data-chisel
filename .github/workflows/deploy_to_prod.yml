@@ -30,7 +30,7 @@ jobs:
 
       - name: Push Changes to Prod Workspace
         run: |
-          databricks workspace import /Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/pytest_script.py /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/pytest_script.py --overwrite --format SOURCE --language PYTHON || echo "Error importing Python script"
+          databricks workspace import /Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/pytest_script.py /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/ --overwrite --format SOURCE --language PYTHON || echo "Error importing Python script"
           
           #databricks workspace run-now --notebook /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/pytest_script.py
 
