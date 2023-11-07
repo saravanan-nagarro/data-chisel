@@ -18,5 +18,3 @@ import pandas
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC select current_database()
