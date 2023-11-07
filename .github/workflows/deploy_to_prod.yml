@@ -17,6 +17,9 @@ jobs:
         with:
           token: ${{ secrets.DATABRICKS_TOKEN }}
 
+      - name: Install Databricks CLI
+        uses: microsoft/install-databricks-cli@v1.0.0
+
       - name: Push Changes to Prod Workspace
         run: |
           # Replace with your Databricks commands to push code and run notebooks in the Prod workspace
