@@ -12,13 +12,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Databricks CLI
-        uses: microsoft/install-databricks-cli@v1.0.0
-
-      - name: Configure Databricks CLI
+      - name: Databricks CLI config
         run: |
-          # Configure the Databricks CLI with your authentication token
-          /home/runner/.local/bin/databricks configure --token dapi4c3705cf17d3edc3014f783a26d91aef
+          # Install the Databricks CLI if needed
+          pip install databricks-cli
+
+          # Configure the Databricks CLI with your Databricks authentication token
+          cat > ~/.databrickscfg << EOF
+          [DEFAULT]
+          host = ${{ secrets.DATABRICKS_HOST_URL }}
+          token = ${{ secrets.DATABRICKS_TOKEN }}
+          jobs-api-version = 2.1
+          EOF
 
       - name: Push Changes to Prod Workspace
         run: |
