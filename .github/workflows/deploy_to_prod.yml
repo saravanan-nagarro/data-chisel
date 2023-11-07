@@ -15,6 +15,11 @@ jobs:
       - name: Set up Databricks CLI
         uses: microsoft/install-databricks-cli@v1.0.0
 
+      - name: Configure Databricks CLI
+        run: |
+          # Configure the Databricks CLI with your authentication token
+          /home/runner/.local/bin/databricks configure --token dapi4c3705cf17d3edc3014f783a26d91aef
+
       - name: Push Changes to Prod Workspace
         run: |
           # Replace with your Databricks commands to push code and run notebooks in the Prod workspace
