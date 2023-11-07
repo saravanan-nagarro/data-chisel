@@ -36,5 +36,5 @@ jobs:
 
       - name: Debugging
         run: |
-          echo "Source Path: /Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/pytest_script.py"
-          echo "Destination Path: /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/pytest_script.py"
+          cat /Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/pytest_script.py"
+          cat /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/pytest_script.py"
