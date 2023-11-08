@@ -38,3 +38,4 @@ jobs:
           databricks-host: https://adb-7743464365010388.8.azuredatabricks.net/
           databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
           local-notebook-path:  /Repos/meenu.jain@nagarro.com/data-chisel/test_scripts/pytest_script.py
+          existing-cluster-id: 0907-191700-rh6zifej
