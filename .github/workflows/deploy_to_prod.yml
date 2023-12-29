@@ -1,41 +1,49 @@
+---
 name: Deploy to Prod
 on:
   push:
     branches:
       - master
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
       - name: Upgrade urllib3
         run: pip install --upgrade urllib3
-
       - name: Databricks CLI config
-        run: |
+        run: >
           # Install or upgrade the Databricks CLI
+
           pip install --upgrade databricks-cli
 
-          # Configure the Databricks CLI with your Databricks authentication token
-          cat > ~/.databrickscfg << EOF
-          [DEFAULT]
-          host = https://adb-7743464365010388.8.azuredatabricks.net/ #${{ secrets.MY_DATABRICKS_HOST }}
-          token = ${{ secrets.DATABRICKS_TOKEN }}
-          jobs-api-version = 2.1
-          EOF
 
-      # - name: Push Changes to Prod Workspace
-      #   run: |
-      #     databricks workspace import /data-chisel/test_scripts/pytest_script.py /Repos/meenu.jain@nagarro.com/data-chisel/prod_scripts/ --language python --overwrite|| echo "Error importing Python script"
-      
+          # Configure the Databricks CLI with your Databricks authentication token
+
+          cat > ~/.databrickscfg << EOF
+
+          [DEFAULT]
+
+          host = https://adb-3476599139272140.0.azuredatabricks.net/ #${{ secrets.MY_DATABRICKS_HOST }}
+
+          token = dapi2f8a3a7f83eae6d32e695919bb05896c 
+
+          jobs-api-version = 2.1
+
+          EOF
+      - name: check live folder
+        run: |
+          if databricks workspace ls --id /live 2>/dev/null; then
+            echo "Folder live already exists."
+          else
+            echo "Folder $FOLDER does not exist. Creating..."
+            databricks workspace mkdirs /live
+          fi
       - name: Trigger notebook in prod
         uses: databricks/run-notebook@v0
         with:
           databricks-host: https://adb-3476599139272140.0.azuredatabricks.net/
-          databricks-token: dapi2f8a3a7f83eae6d32e695919bb05896c #${{ secrets.DATABRICKS_TOKEN }}
-          local-notebook-path:  test_scripts/pytest_script.py
-          existing-cluster-id: 0907-191700-rh6zifej
+          databricks-token: dapi2f8a3a7f83eae6d32e695919bb05896c
+          local-notebook-path: /Users/saravanan.harisamy@nagarro.com/test_scripts/pytest_script.py
+          existing-cluster-id: 1229-103411-8dq9v5id
