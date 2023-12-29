@@ -45,5 +45,5 @@ jobs:
         with:
           databricks-host: https://adb-3476599139272140.0.azuredatabricks.net/
           databricks-token: dapi2f8a3a7f83eae6d32e695919bb05896c
-          local-notebook-path: /Users/saravanan.harisamy@nagarro.com/test_scripts/pytest_script.py
+          local-notebook-path: /test_scripts/pytest_script.py
           existing-cluster-id: 1229-103411-8dq9v5id
